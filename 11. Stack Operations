@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+#define MAX 5
+
+int stack[MAX];
+int top=-1;
+
+void push(int item) {
+    stack[++top]=item;
+}
+
+void pop() {
+    printf("Popped Element: %d\n",stack[top--]);
+}
+
+void peek() {
+    printf("Peek Element: %d\n",stack[top]);
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+
+    peek();
+    pop();
+
+    return 0;
+}
