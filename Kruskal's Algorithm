@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int parent[10];
+
+int find(int i){
+    while(parent[i])
+        i=parent[i];
+    return i;
+}
+
+void uni(int i,int j){
+    parent[j]=i;
+}
+
+int main(){
+    int cost[4][4]={
+        {999,10,6,5},
+        {10,999,999,15},
+        {6,999,999,4},
+        {5,15,4,999}
+    };
+
+    int edges=0,min,a,b,u,v;
+
+    while(edges<3){
+        min=999;
+
+        for(int i=0;i<4;i++)
+            for(int j=0;j<4;j++)
+                if(cost[i][j]<min){
+                    min=cost[i][j];
+                    a=u=i;
+                    b=v=j;
+                }
+
+        u=find(u);
+        v=find(v);
+
+        if(u!=v){
+            printf("%d - %d : %d\n",a,b,min);
+            uni(u,v);
+            edges++;
+        }
+
+        cost[a][b]=cost[b][a]=999;
+    }
+
+    return 0;
+}
