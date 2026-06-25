@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int cost[4][4] = {
+        {0,10,6,5},
+        {10,0,0,15},
+        {6,0,0,4},
+        {5,15,4,0}
+    };
+
+    int selected[4]={0};
+    selected[0]=1;
+
+    for(int e=0;e<3;e++) {
+        int min=999,x=0,y=0;
+
+        for(int i=0;i<4;i++)
+            if(selected[i])
+                for(int j=0;j<4;j++)
+                    if(!selected[j] && cost[i][j] && cost[i][j]<min) {
+                        min=cost[i][j];
+                        x=i; y=j;
+                    }
+
+        printf("%d - %d : %d\n",x,y,min);
+        selected[y]=1;
+    }
+
+    return 0;
+}
